@@ -9,9 +9,17 @@ import { NotFoundComponent } from "./error/not-found.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { FooterElementComponent } from "./footer/footer.component";
 import { ContactComponent } from "./contact/contact.component";
+import { HeaderService } from "./header/header.service";
+import { NewsItemComponent } from "./news-item/news-item.component";
+import { AddNewsItemComponent } from "./add-news-item/add-news-item.component";
+import { NewsService } from "./services/news.service";
+import { NewsItemDetailsComponent } from "./news-item-details/news-item-details.component";
+
 const appRoutes: Routes = [
   { path: "", component: MainViewComponent },
-  { path: "contact", component: ContactComponent },
+  { path: "add", component: AddNewsItemComponent },
+  { path: "edit/:id", component: AddNewsItemComponent },
+  { path: "details/:id", component: NewsItemDetailsComponent },
   { path: "404", component: NotFoundComponent },
   { path: "**", redirectTo: "/404" }
 ];
@@ -28,8 +36,12 @@ const appRoutes: Routes = [
     NotFoundComponent,
     SidebarComponent,
     FooterElementComponent,
-    ContactComponent
+    ContactComponent,
+    NewsItemComponent,
+    AddNewsItemComponent,
+    NewsItemDetailsComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [HeaderService, NewsService]
 })
 export class AppModule {}

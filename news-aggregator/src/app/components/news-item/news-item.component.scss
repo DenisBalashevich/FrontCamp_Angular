@@ -1,0 +1,35 @@
+.news-item {
+  display: flex;
+  padding: 10px 30px;
+  border: 1px solid black;
+  margin: 5px 100px;
+  justify-content: space-between;
+
+  .short-info-section {
+    margin: 0 20px;
+    flex: 1;
+    
+  }
+
+  .short-info-section > div + div {
+    margin-top: 20px;
+  }
+
+  .image-section {
+    width: 200px;
+  }
+
+  .image-section img {
+    width: 100%;
+    border: 1px solid gray;
+  }
+
+  .buttons-section {
+      display: flex;
+      flex-direction: column;
+
+      input + input {
+          margin-top: 15px;
+      }
+  }
+}

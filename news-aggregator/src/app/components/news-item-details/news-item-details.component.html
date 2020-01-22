@@ -1,0 +1,19 @@
+<app-news-source [source]="source?.name"></app-news-source>
+<div class="news">
+    <div class="title">{{newsItem.heading}}</div>
+    <div class="body">
+      <div class="image">
+        <img src="{{newsItem.image}}">
+      </div>
+      <div class="description">
+        <p>{{newsItem.content}}</p>
+        <div>Date: {{newsItem.date | date:'dd/mm/yyyy h:mm a'}}</div>
+        <div>Author</div>
+      </div>
+      <div class="buttons">
+        <input type="button" value="Edit" routerLink="/edit/{{newsItem.id}}">
+        <input type="button" value="Delete">
+      </div>
+    </div>
+  </div>
+  

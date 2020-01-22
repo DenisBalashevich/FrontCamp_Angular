@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { News } from "../models/news";
-import {HeaderService} from '../header/header.service';
+import { News } from "../../models/news";
+import {NewsEmitService} from '../../services/news-emit.service';
 
 @Component({
   selector: "main-view",
@@ -10,11 +10,11 @@ export class MainViewComponent {
     news: News[];
     
     constructor(
-        private headerService: HeaderService
+        private newsEmitService: NewsEmitService
       ) { }
     
       ngOnInit() {
-        this.headerService.change.subscribe((news: News[]) => {
+        this.newsEmitService.change.subscribe((news: News[]) => {
           this.news = news;
         });
       }

@@ -1,0 +1,21 @@
+<div class="news-item">
+    <div class="image-section">
+        <img src="{{newsItem.image}}">
+    </div>
+    <div class="short-info-section">
+        <div>{{newsItem.heading}}</div>
+        <div>{{newsItem.shortDescription}}</div>
+        <div>Date: {{newsItem.date | date:'dd/mm/yyyy h:mm a'}}</div>
+        <button type="button" routerLink="/details/{{newsItem.id}}" [queryParams]="{ source: newsItem.source.id}">
+            Read more...
+        </button>
+    </div>
+    <div class="buttons-section">
+        <button type="button" routerLink="/edit/{{newsItem.id}}">
+            Edit
+        </button>
+        <button type="button">
+            Delete
+        </button>
+    </div>
+</div>

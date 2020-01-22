@@ -1,0 +1,15 @@
+<app-news-source [source]="selectedSource?.name"></app-news-source>
+<div class='filtering-panel'>
+    <select ngModel id='select-source' [disabled]="onlyCreatedByMe" (ngModelChange)="selectSourceChangeHandler($event)">
+        <option value="" disabled selected>Select Source</option>
+        <option *ngFor="let value of sources" [ngValue]="value">{{value.name}}</option>
+    </select>
+    <input [(ngModel)]="filterText" [disabled]="!selectedSource" placeholder="Type you text..." type="text"
+        (ngModelChange)="onChangeHadler($event)" />
+    <div>
+        <input type="checkbox" id="created-by-me-checkbox" class="created-by-me-checkbox" [(ngModel)]="onlyCreatedByMe"
+            (ngModelChange)="onlyCreatedByMeChanged($event)" />
+        <label for="created-by-me-checkbox">Only created by me</label>
+    </div>
+    <button class="btn btn-outline-success" type="submit" routerLink="/add">Add Article</button>
+</div>
