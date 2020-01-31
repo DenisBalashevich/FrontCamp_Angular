@@ -44,7 +44,6 @@ export class NewsApiService {
           return response.articles.map(
             (article: any) =>
               new News({
-                url: article.url,
                 source: new Source(article.source),
                 heading: article.title,
                 shortDescription: article.description,
