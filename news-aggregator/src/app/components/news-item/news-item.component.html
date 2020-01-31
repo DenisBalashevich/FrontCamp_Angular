@@ -6,15 +6,18 @@
         <div>{{newsItem.heading}}</div>
         <div>{{newsItem.shortDescription}}</div>
         <div>Date: {{newsItem.date | date:'dd/mm/yyyy h:mm a'}}</div>
-        <button type="button" routerLink="/details/{{newsItem.id}}" [queryParams]="{ source: newsItem.source.id}">
+        <button *ngIf="newsItem.isLocal; else elseReadMore" type="button" routerLink="/details/{{newsItem.id}}">
             Read more...
         </button>
+        <ng-template #elseReadMore>
+            <a href="{{newsItem.sourceUrl}}">Read more ...</a>
+        </ng-template>
     </div>
-    <div class="buttons-section">
+    <div class="buttons-section"  *ngIf="newsItem.isLocal">
         <button type="button" routerLink="/edit/{{newsItem.id}}">
             Edit
         </button>
-        <button type="button">
+        <button type="button" (click)="removeItemHandler()" >
             Delete
         </button>
     </div>

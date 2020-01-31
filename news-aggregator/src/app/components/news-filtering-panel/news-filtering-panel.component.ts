@@ -1,49 +1,67 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { NewsEmitService } from "src/app/services/news-emit.service";
 import { Source } from "src/app/models/source";
-import { News } from "src/app/models/news";
-import { sources } from "../../models/mockedSources";
+import { NewsApiService } from "src/app/services/news-api.service";
+import { Filter } from "src/app/models/filter";
 
 @Component({
   selector: "app-news-filtering-panel",
   templateUrl: "./news-filtering-panel.component.html",
   styleUrls: ["./news-filtering-panel.component.scss"]
 })
-export class NewsFilteringPanelComponent {
-  sources = sources;
+export class NewsFilteringPanelComponent implements OnInit {
+  sources: Source[];
   selectedSource: Source = null;
-  filterText: String;
+  filterText: string = "";
   onlyCreatedByMe: boolean = false;
 
-  constructor(private newsEmitService: NewsEmitService) {}
+  constructor(
+    private newsEmitService: NewsEmitService,
+    private newsApiService: NewsApiService
+  ) {}
+
+  ngOnInit() {
+    this.newsApiService.getSources().subscribe(sources => {
+      this.sources = sources;
+    });
+  }
 
   isfilterTextEnabled() {
-    return this.selectedSource === null;
+    return !this.selectedSource && !this.onlyCreatedByMe;
   }
 
-  onChangeHadler(filterText: any) {
-    let news: News[] = [];
-    if (filterText !== "") {
-      news = this.selectedSource.news.filter(source =>
-        source.heading.includes(filterText)
-      );
-    } else {
-      news = this.selectedSource.news;
-    }
-    this.newsEmitService.setNews(news);
+  onSearchClick() {
+    this.updateData();
   }
 
-  onlyCreatedByMeChanged(enabled) {
-    if (enabled) {
-      this.newsEmitService.setNews([]);
-    }
+  onlyCreatedByMeChanged() {
+    this.updateData();
   }
 
-  selectSourceChangeHandler(event: any) {
-    this.selectedSource = event;
-    this.selectedSource.news.forEach(element => {
-      element.source = this.selectedSource;
+  selectSourceChangeHandler(selectedSource: Source) {
+    this.selectedSource = selectedSource;
+    this.updateData();
+  }
+
+  updateData() {
+    this.clearFiltering();
+    this.loadNews();
+  }
+
+  clearFiltering() {
+    this.newsEmitService.clearFilter();
+  }
+
+  loadNews() {
+    let filter = new Filter({
+      source:
+        this.selectedSource && this.onlyCreatedByMe !== true
+          ? this.selectedSource.id.toString()
+          : null,
+      criteriaSearch: this.filterText,
+      loadLocal: this.onlyCreatedByMe
     });
-    this.newsEmitService.setNews(this.selectedSource.news);
+
+    this.newsEmitService.loadNews(filter);
   }
 }

@@ -1,39 +1,39 @@
 <app-news-source [source]="pageHeader"></app-news-source>
 <div class='editing-section'>
     <div>
-        <label>
-            Heading:<br>
-            <input type="text" [(ngModel)]="newsItem.heading">
-        </label>
-        <label>
-            Short description:<br>
-            <input type="text" [(ngModel)]="newsItem.shortDescription">
-        </label>
-        <label>
-            Content:<br>
-            <textarea></textarea>
-        </label>
-    </div>
-    <div>
-        <label>
-            Image:<br>
-            <input type="text" [(ngModel)]="newsItem.image">
-        </label>
-        <label>
-            Date:<br>
-            <input type="text" [(ngModel)]="newsItem.date">
-        </label>
-        <label>
-            Author:<br>
-            <input type="text" [(ngModel)]="newsItem.author">
-        </label>
-        <label>
-            Source URL:<br>
-            <input type="text" [(ngModel)]="newsItem.sourceUrl">
-        </label>
-        <div class="buttons">
-            <input type="button" value="Save" (click)="save($event)">
-            <input type="button" value="Cancel" (click)="goBack($event)">
-        </div>
+        <form [formGroup]="editNewsForm" #formDir="ngForm" (ngSubmit)="save()">
+            <div class="form-group">
+                <label>Heading:</label>
+                <input type="text" formControlName="heading" required
+                    [ngClass]="{'invalid': heading.invalid && (heading.dirty || heading.touched)}">
+
+                <label>Short description: </label>
+                <input type="text" formControlName="shortDescription">
+
+                <label> Content: </label>
+                <textarea formControlName="content" required
+                    [ngClass]="{'invalid': content.invalid && (content.dirty || content.touched)}">
+                </textarea>
+            </div>
+            <div>
+                <label> Image:</label>
+                <input type="text" formControlName="image">
+
+                <label> Date:</label>
+                <input type="text" formControlName="date" value="{{date.value | date:'dd/MM/yyyy'}}">
+
+                <label>Author: </label>
+                <input type="text" formControlName="author" required
+                    [ngClass]="{'invalid': author.invalid && (author.dirty || author.touched)}">
+
+                <label> Source URL: </label>
+                <input type="text" formControlName="sourceUrl">
+
+                <div class="buttons">
+                    <input type="submit" value="Save" [disabled]="editNewsForm.invalid">
+                    <input type="button" value="Cancel" (click)="goBack()">
+                </div>
+            </div>
+        </form>
     </div>
 </div>

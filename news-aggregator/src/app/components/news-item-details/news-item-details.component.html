@@ -12,7 +12,7 @@
       </div>
       <div class="buttons">
         <input type="button" value="Edit" routerLink="/edit/{{newsItem.id}}">
-        <input type="button" value="Delete">
+        <input type="button" value="Delete" (click)="onDeleteNewsItem(newsItem.id)">
       </div>
     </div>
   </div>

@@ -10,8 +10,10 @@ export class News {
   author: String;
   source: Source;
   sourceUrl: String;
+  isLocal: boolean;
 
   public constructor(init?: Partial<News>) {
     Object.assign(this, init);
   }
+  
 }

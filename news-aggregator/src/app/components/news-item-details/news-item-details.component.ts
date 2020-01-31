@@ -17,6 +17,7 @@ export class NewsItemDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private newsService: NewsService,
     private sourceService: SourceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -26,9 +27,12 @@ export class NewsItemDetailsComponent {
     });
 
     this.activatedRoute.queryParams.subscribe(params => {
-      debugger;
       this.source = this.sourceService.getSource(params.source);
     });
-
   }
+
+  onDeleteNewsItem = (id: String) => {
+    this.newsService.delete(id);
+    this.router.navigate(["/"]);
+  };
 }

@@ -8,7 +8,8 @@ export const mockedNews: News[] = [
     content: 'content1',
     date: new Date(Date.now()),
     shortDescription: 'shortDescription1',
-    image: 'https://www.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg'
+    image: 'https://www.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg',
+    isLocal: true
   }),
   new News({
     id: '2',
@@ -17,7 +18,8 @@ export const mockedNews: News[] = [
     content: 'content2',
     date: new Date(Date.now()),
     shortDescription: 'shortDescription2',
-    image: 'https://images.theconversation.com/files/280024/original/file-20190618-118505-aag3r7.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=496&fit=clip'
+    image: 'https://images.theconversation.com/files/280024/original/file-20190618-118505-aag3r7.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=496&fit=clip',
+    isLocal: true
   }),
   new News({
     id: '3',
@@ -26,7 +28,8 @@ export const mockedNews: News[] = [
     content: 'content3',
     date: new Date(Date.now()),
     shortDescription: 'shortDescription3',
-    image: 'https://simple-fauna.ru/wp-content/uploads/2018/01/zhiraf.jpg'
+    image: 'https://simple-fauna.ru/wp-content/uploads/2018/01/zhiraf.jpg',
+    isLocal: true
   }),
   new News({
     id: '4',
@@ -35,7 +38,8 @@ export const mockedNews: News[] = [
     content: 'content4',
     date: new Date(Date.now()),
     shortDescription: 'shortDescription4',
-    image: 'http://www.rus-zona.net/wp-content/uploads/dikiejivotnie/zebra_1.jpg'
+    image: 'http://www.rus-zona.net/wp-content/uploads/dikiejivotnie/zebra_1.jpg',
+    isLocal: true
   }),
   new News({
     id: '5',
@@ -44,6 +48,7 @@ export const mockedNews: News[] = [
     content: 'content5',
     date: new Date(Date.now()),
     shortDescription: 'shortDescription5',
-    image: 'https://i.pinimg.com/originals/c7/84/fc/c784fc31094d844f598a047492908213.jpg'
+    image: 'https://i.pinimg.com/originals/c7/84/fc/c784fc31094d844f598a047492908213.jpg',
+    isLocal: true
   })
 ];

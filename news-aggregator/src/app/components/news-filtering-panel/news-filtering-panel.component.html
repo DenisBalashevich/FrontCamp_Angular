@@ -4,8 +4,10 @@
         <option value="" disabled selected>Select Source</option>
         <option *ngFor="let value of sources" [ngValue]="value">{{value.name}}</option>
     </select>
-    <input [(ngModel)]="filterText" [disabled]="!selectedSource" placeholder="Type you text..." type="text"
-        (ngModelChange)="onChangeHadler($event)" />
+    <div>
+        <input [(ngModel)]="filterText"  [disabled]="isfilterTextEnabled()" placeholder="Type you text..." type="text" />
+        <button [disabled]="isfilterTextEnabled()" (click)="onSearchClick()">Search</button>
+    </div>
     <div>
         <input type="checkbox" id="created-by-me-checkbox" class="created-by-me-checkbox" [(ngModel)]="onlyCreatedByMe"
             (ngModelChange)="onlyCreatedByMeChanged($event)" />

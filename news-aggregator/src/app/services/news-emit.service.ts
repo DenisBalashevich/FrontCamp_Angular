@@ -1,14 +1,20 @@
 import { Injectable, Output, EventEmitter } from "@angular/core";
 import { News } from "../models/news";
+import { Filter } from "../models/filter";
+import { NewsService } from "./news.service";
 
 @Injectable()
 export class NewsEmitService {
-  news: News[] = [];
+  constructor() {}
 
-  @Output() change: EventEmitter<News[]> = new EventEmitter();
+  @Output() onLoadNews: EventEmitter<Filter> = new EventEmitter();
+  @Output() onClearFilter = new EventEmitter();
 
-  setNews(news: News[]) {
-    this.news = news;
-    this.change.emit(this.news);
+  loadNews(filter: Filter) {
+    this.onLoadNews.emit(filter);
+  }
+
+  clearFilter() {
+    this.onClearFilter.emit();
   }
 }
